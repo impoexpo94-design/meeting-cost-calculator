@@ -6,6 +6,29 @@
     <title>Meeting Cost Calculator | Calculate Your Meeting Expenses</title>
     <meta name="description" content="Free Meeting Cost Calculator: Discover how much your meetings really cost. Input duration, attendees, and salaries to calculate meeting expenses instantly.">
     <style>
+/* Mobile Fix - Add to your style section */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+    .header {
+        padding: 20px;
+    }
+    .header h1 {
+        font-size: 22px;
+    }
+    .calculator {
+        padding: 20px;
+    }
+    .cost-display {
+        font-size: 24px;
+    }
+}
+        
         * {
             margin: 0;
             padding: 0;
@@ -162,6 +185,31 @@
                 <p style="text-align: center; margin-top: 10px;">That's the real cost of this meeting!</p>
             </div>
         </div>
+
+        </div> <!-- This closes your results div -->
+
+<!-- ADD SOCIAL SHARING RIGHT HERE -->
+<div style="text-align: center; margin: 25px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+    <h4 style="margin-bottom: 15px;">📤 Share This Insight</h4>
+    <p style="margin-bottom: 15px; color: #666;">Help your team discover meeting costs!</p>
+    
+    <a href="https://twitter.com/share?url=https://impoexpo94-design.github.io/meeting-cost-calculator/&text=Just discovered our meetings cost $______! Check this calculator:&hashtags=productivity,business" 
+       target="_blank" 
+       style="display: inline-block; padding: 10px 20px; background: #1DA1F2; color: white; text-decoration: none; border-radius: 8px; margin: 5px; font-weight: bold;">
+       🐦 Share on Twitter
+    </a>
+    
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://impoexpo94-design.github.io/meeting-cost-calculator/"
+       target="_blank"
+       style="display: inline-block; padding: 10px 20px; background: #0077B5; color: white; text-decoration: none; border-radius: 8px; margin: 5px; font-weight: bold;">
+       💼 Share on LinkedIn
+    </a>
+    
+    <a href="mailto:?subject=Check this Meeting Cost Calculator&body=I found this useful tool: https://impoexpo94-design.github.io/meeting-cost-calculator/"
+       style="display: inline-block; padding: 10px 20px; background: #ea4335; color: white; text-decoration: none; border-radius: 8px; margin: 5px; font-weight: bold;">
+       📧 Email to Team
+    </a>
+</div>
         
         <div class="footer">
             <p>Use this tool to make your meetings more productive and cost-effective!</p>
@@ -169,21 +217,28 @@
     </div>
 
     <script>
-        function calculateCost() {
-            // Get input values
-            const duration = parseFloat(document.getElementById('duration').value);
-            const attendees = parseFloat(document.getElementById('attendees').value);
-            const salary = parseFloat(document.getElementById('salary').value);
-            
-            // Simple correct calculation
-            const hourlyRate = salary / 2080; // 2080 work hours per year
-            const meetingHours = duration / 60;
-            const totalCost = hourlyRate * attendees * meetingHours;
-            
-            // Show result
-            document.getElementById('totalCost').textContent = '$' + totalCost.toFixed(2);
-            document.getElementById('result').style.display = 'block';
-        }
+       
+    function calculateCost() {
+        const duration = parseFloat(document.getElementById('duration').value);
+        const attendees = parseFloat(document.getElementById('attendees').value);
+        const salary = parseFloat(document.getElementById('salary').value);
+        
+        const hourlyRate = salary / 2080;
+        const meetingHours = duration / 60;
+        const totalCost = hourlyRate * attendees * meetingHours;
+        
+        document.getElementById('totalCost').textContent = '$' + totalCost.toFixed(2);
+        document.getElementById('result').style.display = 'block';
+    }
+    
+    // Real-time updates as users type
+    document.getElementById('duration').addEventListener('input', calculateCost);
+    document.getElementById('attendees').addEventListener('input', calculateCost);
+    document.getElementById('salary').addEventListener('change', calculateCost);
+    
+    // Calculate on page load
+    window.onload = calculateCost;
+
     </script>
 </body>
 </html>
